@@ -1,0 +1,17 @@
+.list-group{
+    max-height: 300px;
+    margin-bottom: 10px;
+    overflow:scroll;
+    -webkit-overflow-scrolling: touch;
+}
+
+div.container-fluid#bienve{
+  height: 90vh;
+  background-image: url(/images/fondo.jpg);
+  background-size: cover; 
+}
+
+div.container-fluid#lobby{
+  height: 90vh;
+
+}
