@@ -20,7 +20,7 @@ Meteor.methods(
         throw new Meteor.Error("Not autorized");
       }
 
-      Partidas.insert({
+      Partidas.upsert({creador},{
         name,
         creador,
         apuesta:"",
@@ -32,6 +32,24 @@ Meteor.methods(
       });
 
  
+    },
+
+    "partida.del"(name){
+
+     const creador = Meteor.user().username;
+
+
+      if(!creador){
+        throw new Meteor.Error("Not autorized");
+      }
+
+      const part = Partidas.findOne({creador});
+
+      Partidas.remove(part);
+
+ 
     }
+
+
   }
 );

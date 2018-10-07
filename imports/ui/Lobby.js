@@ -27,6 +27,10 @@ class Lobby extends Component {
     this.setState({ entrarPartida: true});
   }
 
+  eliminarPartida(){
+    Meteor.call("partida.del");
+  }
+
   render () {
     return  (
       <div>
@@ -48,14 +52,21 @@ class Lobby extends Component {
         </div>
         <div className="row">
           <div className="col">
+            <br/>
+            <p>Selecciona la partida a la que quieras ingresar</p>
+            <br/>
             <div className="list-group">
             { this.props.partidas.map((p,i) => 
-              <a href="#" class="list-group-item list-group-item-action" onClick={this.entrarPartida.bind(this)}>{p.name} de {p.creador}</a>
+              <a key={i} href="#" class="list-group-item list-group-item-action" onClick={this.entrarPartida.bind(this)}>{p.name} de {p.creador}</a>
             )}
             </div>
           </div>
           <div className="col">
-
+            <ol>
+             { this.props.jugadores.map((p,i) => 
+              <li key={i} href="#"  onClick={this.entrarPartida.bind(this)}>{p.name}</li>
+            )}
+            </ol>
           </div>
         </div>
         <br/>
@@ -68,10 +79,10 @@ class Lobby extends Component {
                 <button class="btn btn-outline-secondary" type="button" onClick ={this.addPartida.bind(this)}>Crear</button>
               </div>
               <input type="text" id="nombrePartida" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1"/>
+              <button class="btn btn-outline-secondary" type="button" onClick ={this.eliminarPartida.bind(this)}>Eliminar Partida</button>
             </div>
           </div>
           <div className="col">
-
           </div>
         </div>
 
