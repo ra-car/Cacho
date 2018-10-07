@@ -27,9 +27,22 @@ Meteor.methods(
       });
 
       //asi le retorno el objeto al cliente
-  //   const player = Usuarios.findOne({name});
+    const player = Usuarios.findOne({name});
 
-  //   return player;
+    return player;
+    },
+
+    "player.dar"(){
+
+      if(!name){
+          throw new Meteor.Error("Not autorized");
+        }
+
+      const player = Usuarios.findOne({name});
+
+      return player;
     }
+
   }
+
 );

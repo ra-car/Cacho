@@ -43,13 +43,13 @@ class App extends Component {
                 </div>
             </div>
           </nav>
-           { console.log(this.props.usuarios.length)}
         {/*Si un usuario ya inicio sesion se le muestra el lobby, de lo contrario se le mostrara la pagina de bienvenida*/}
           {
             Meteor.user() ?
-            <Lobby jugadores={this.props.usuarios}/> : 
+            <Lobby jugadores={this.props.usuarios} player= {Meteor.user().username}/> : 
             <Bienvenida/>
-          }       
+          }
+
         </div>
         <div class="footer-copyright text-center py-3">© 2018 Copyright:
           <a href="https://mdbootstrap.com/bootstrap-tutorial/"> MDBootstrap.com</a>
