@@ -23,7 +23,7 @@ Meteor.methods(
       {
         name,
         puntaje:0,
-        dados:0
+        dados:5
       });
 
       //asi le retorno el objeto al cliente
@@ -41,6 +41,27 @@ Meteor.methods(
       const player = Usuarios.findOne({name});
 
       return player;
+    },
+
+    "players.reset"(){
+      const name = Meteor.user().username;
+
+      if(!name){
+        throw new Meteor.Error("Not autorized");
+      }
+
+      Usuarios.upsert(
+      {name},
+      {
+        name,
+        puntaje:0,
+        dados:0
+      });
+
+      //asi le retorno el objeto al cliente
+    const player = Usuarios.findOne({name});
+
+    return player;
     }
 
   }

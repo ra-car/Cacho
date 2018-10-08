@@ -48,6 +48,27 @@ Meteor.methods(
       Partidas.remove(part);
 
  
+    },
+
+    "usuarios.agregar"(name){
+
+      const creador = Meteor.user().username;
+
+       if(!creador){
+        throw new Meteor.Error("Not autorized");
+      }
+
+      const part = Partidas.findOne({name});
+
+      const a = part.usuarios;
+      a.push(creador);
+
+
+      Partidas.update({_id: part._id},{
+        $set:{
+          usuarios: a
+        }
+      });
     }
 
 

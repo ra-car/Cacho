@@ -13,7 +13,7 @@ class Lobby extends Component {
       partidas: [],
       entrarPartida: false
     }
-    
+     this.entraraPartida = this.entraraPartida.bind(this);
   }
 
   addPartida(){
@@ -22,9 +22,10 @@ class Lobby extends Component {
     Meteor.call("partida.add",name);
   }
 
-  entrarPartida(){
+  entraraPartida(namae){
 
     this.setState({ entrarPartida: true});
+    Meteor.call("usuarios.agregar",namae);
   }
 
   eliminarPartida(){
@@ -57,14 +58,14 @@ class Lobby extends Component {
             <br/>
             <div className="list-group">
             { this.props.partidas.map((p,i) => 
-              <a key={i} href="#" class="list-group-item list-group-item-action" onClick={this.entrarPartida.bind(this)}>{p.name} de {p.creador}</a>
+              <a key={i} href="#" class="list-group-item list-group-item-action" onClick={ () => this.entraraPartida(p.name)}>{p.name} de {p.creador}</a>
             )}
             </div>
           </div>
           <div className="col">
             <ol>
              { this.props.jugadores.map((p,i) => 
-              <li key={i} href="#"  onClick={this.entrarPartida.bind(this)}>{p.name}</li>
+              <li key={i} href="#">{p.name}</li>
             )}
             </ol>
           </div>

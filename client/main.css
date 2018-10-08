@@ -1,3 +1,7 @@
+div{
+  font-family: 'Chakra Petch', sans-serif; 
+}
+
 .list-group{
     max-height: 300px;
     margin-bottom: 10px;
