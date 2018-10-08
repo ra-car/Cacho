@@ -78,7 +78,7 @@ class Partida extends Component {
               {/*Aca ban los dados del jugador*/}
                 <div>
                  { this.state.player.dados.map((p,i) => 
-                     <img src={"/images/dado" +(p+1)+".png"} border="1" alt="dado" width="40" height="40"/>
+                     <img src={"/images/dado" +(p+1)+".png"} border="1" alt="dado" width="60" height="60"/>
                   )}
                 </div>
                 
