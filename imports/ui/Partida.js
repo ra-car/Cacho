@@ -12,11 +12,18 @@ class Partida extends Component {
 
       partida:{usuarios: [],
       apuesta:"No hay Apuesta"},
-      player:null
+      player:{dados:[]}
      }
 
     this.darUsuario = this.darUsuario.bind(this);
+    this.playeradd = this.playeradd.bind(this);
   }
+
+   playeradd()
+   {
+     Meteor.call("players.add");
+  }
+ 
 
   darPartida(){
 
@@ -30,6 +37,7 @@ class Partida extends Component {
     });
 
     this.darUsuario();
+    this.playeradd();
   }
 
   darUsuario(){
@@ -68,7 +76,12 @@ class Partida extends Component {
           <div className="row">
             <div className="col">
               {/*Aca ban los dados del jugador*/}
-              
+                <div>
+                 { this.state.player.dados.map((p,i) => 
+                     <img src={"/images/dado" +(p+1)+".png"} border="1" alt="dado" width="40" height="40"/>
+                  )}
+                </div>
+                
             </div>
             <div className="col">
             

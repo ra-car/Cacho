@@ -17,11 +17,11 @@ class App extends Component {
 
  }
 
- 
 
   render() {
     return (
      <div> 
+        
         <div>
           {/*navbar de la pagina*/}        
           <nav className ="navbar navbar-expand-lg navbar-dark bg-dark">

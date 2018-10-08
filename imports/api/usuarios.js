@@ -18,12 +18,18 @@ Meteor.methods(
         throw new Meteor.Error("Not autorized");
       }
 
+      var num = Math.floor(Math.random() * 6) + 0;
+      var num1 = Math.floor(Math.random() * 6) + 0;
+      var num2 = Math.floor(Math.random() * 6) + 0;
+      var num3 = Math.floor(Math.random() * 6) + 0;
+      var num4 = Math.floor(Math.random() * 6) + 0;
+
       Usuarios.upsert(
       {name},
       {
         name,
         puntaje:0,
-        dados:5
+        dados:[num,num1,num2,num3,num4]
       });
 
       //asi le retorno el objeto al cliente
@@ -50,12 +56,17 @@ Meteor.methods(
         throw new Meteor.Error("Not autorized");
       }
 
+      var num = Math.floor(Math.random() * 6) + 0;
+      var num1 = Math.floor(Math.random() * 6) + 0;
+      var num2 = Math.floor(Math.random() * 6) + 0;
+      var num3 = Math.floor(Math.random() * 6) + 0;
+      var num4 = Math.floor(Math.random() * 6) + 0;
       Usuarios.upsert(
       {name},
       {
         name,
         puntaje:0,
-        dados:0
+        dados:[num,num1,num2,num3,num4]
       });
 
       //asi le retorno el objeto al cliente
