@@ -33,7 +33,7 @@ Meteor.methods(
     },
 
     "player.dar"(){
-
+      const name = Meteor.user().username;
       if(!name){
           throw new Meteor.Error("Not autorized");
         }

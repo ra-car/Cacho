@@ -60,8 +60,11 @@ Meteor.methods(
 
       const part = Partidas.findOne({name});
 
+
       const a = part.usuarios;
-      a.push(creador);
+
+      a.indexOf(creador) === -1 ? a.push(creador) : console.log("This item already exists");
+
 
 
       Partidas.update({_id: part._id},{
@@ -69,7 +72,23 @@ Meteor.methods(
           usuarios: a
         }
       });
-    }
+    },
+
+
+    "partida.dar"(name){
+
+      const creador = Meteor.user().username;
+
+       if(!creador){
+        throw new Meteor.Error("Not autorized");
+      }
+
+      const part = Partidas.findOne({name});
+
+      return part;
+    },
+
+
 
 
   }

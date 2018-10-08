@@ -12,6 +12,7 @@ class Bienvenida extends Component {
           <div class="row">
             <div class="col-lg-10 mx-auto">
               <h1 class="text-uppercase text-center text-white">
+                <br/>
                 <strong>Bienvenido a el juego Cacho</strong>
               </h1>
               <hr/>

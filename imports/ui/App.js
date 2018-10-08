@@ -15,17 +15,9 @@ class App extends Component {
       player: null
     };
 
-    this.addPlayer = this.addPlayer.bind(this);
-  }
+ }
 
-  addPlayer(e){
-    e.preventDefault();
-    Meteor.call("players.add", name , (err,player)=>{
-      if(err){alert(err); return;}
-      this.setState({player})
-    });
-  }
-
+ 
 
   render() {
     return (
@@ -51,7 +43,7 @@ class App extends Component {
           }
 
         </div>
-        <div class="footer-copyright text-center py-3">© 2018 Copyright:
+        <div class="footer-copyright footer-dark text-center py-3">© 2018 Copyright:
           <a href="https://mdbootstrap.com/bootstrap-tutorial/"> MDBootstrap.com</a>
         </div>
       </div>
