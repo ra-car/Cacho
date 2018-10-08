@@ -73,6 +73,17 @@ Meteor.methods(
     const player = Usuarios.findOne({name});
 
     return player;
+    },
+
+    "player2.dar"(namae){
+      const name = Meteor.user().username;
+      if(!name){
+          throw new Meteor.Error("Not autorized");
+        }
+
+      const player = Usuarios.findOne({namae});
+
+      return player;
     }
 
   }

@@ -17,6 +17,7 @@ class Partida extends Component {
 
     this.darUsuario = this.darUsuario.bind(this);
     this.playeradd = this.playeradd.bind(this);
+    this.acualizarApuesta = this.acualizarApuesta.bind(this);
   }
 
    playeradd()
@@ -24,6 +25,12 @@ class Partida extends Component {
      Meteor.call("players.add");
   }
  
+  acualizarApuesta(){
+    const cant = document.getElementById("cantidad").value;
+    const deno = document.getElementById("denomi").value;
+
+    Meteor.call("apuesta.up",this.props.nombreP, cant, deno);
+  }
 
   darPartida(){
 
@@ -48,8 +55,16 @@ class Partida extends Component {
         player: p
       })
     });
-
   }
+  darUsuario2(name){
+    const a=null;
+    Meteor.call("player2.dar",name, (err,p)=>{
+      if(err){alert(err); return;}
+      a=p
+    });
+    return a;
+  }
+
   render() {
     return(
       <div>
@@ -78,7 +93,7 @@ class Partida extends Component {
               {/*Aca ban los dados del jugador*/}
                 <div>
                  { this.state.player.dados.map((p,i) => 
-                     <img src={"/images/dado" +(p+1)+".png"} border="1" alt="dado" width="60" height="60"/>
+                     <img key={i} src={"/images/dado" +(p+1)+".png"} border="1" alt="dado" width="60" height="60"/>
                   )}
                 </div>
                 
@@ -96,10 +111,31 @@ class Partida extends Component {
           <div className="row">
             <div className="col">
               <div class="input-group mb-3">
-                <p>Puedes crear una partida si lo deseas, escribe el nombre de la partida y dale a crear</p>
-                <br/>
               {/*Aca van las opciones*/}
-                
+                <div className="row">
+                 <div className="col">
+                   <br/>
+                   <button class="btn btn-outline-secondary btn-block" type="button">Dudar</button>
+                   <br/>
+                   <button class="btn btn-outline-secondary btn-block" type="button">Plantar</button>
+                 </div>
+                 <div className="col">
+                    <label >¡Has una apuesta!</label>
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon3">Cantidad:</span>
+                      </div>
+                      <input type="text" class="form-control" id="cantidad" aria-describedby="basic-addon3"/>
+                    </div>  
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon3">Denominación:</span>
+                      </div>
+                      <input type="text" class="form-control" id="denomi" aria-describedby="basic-addon3"/>
+                    </div>  
+                     <button class="btn btn-outline-secondary" type="button" onClick={this.acualizarApuesta}>Apostar!</button>
+                 </div>
+                </div>
               </div>
             </div>
             <div className="col">

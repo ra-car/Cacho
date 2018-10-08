@@ -88,6 +88,23 @@ Meteor.methods(
       return part;
     },
 
+    "apuesta.up"(name,cant,deno){
+
+       const creador = Meteor.user().username;
+
+       if(!creador){
+        throw new Meteor.Error("Not autorized");
+      }
+
+      const part = Partidas.findOne({name});
+      const resp = cant + "de" + deno;
+       Partidas.update({_id: part._id},{
+        $set:{
+          apuesta: resp 
+        }
+      });
+
+    }
 
 
 

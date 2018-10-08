@@ -43,8 +43,8 @@ class App extends Component {
           }
 
         </div>
-        <div class="footer-copyright footer-dark text-center py-3">© 2018 Copyright:
-          <a href="https://mdbootstrap.com/bootstrap-tutorial/"> MDBootstrap.com</a>
+        <div class="footer-copyright footer-dark text-center py-3"> Icons made by Pixel perfect from www.flaticon.com is licensed by CC 3.0 BY | © 2018 Copyright: 
+          <a href="https://rcardenas11.github.io/"> Rafael Cárdenas Gasca</a>
         </div>
       </div>
       );
