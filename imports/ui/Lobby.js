@@ -50,6 +50,7 @@ class Lobby extends Component {
       {!this.state.entrarPartida ? <div className="container-fluid" id="lobby">
         <br/>
         <br/>
+    // Te falto declarar el jugador en la validación de PropTypes
         <h2> Bienvenid@ {this.props.player} </h2>
         <br/>
         <br/>
@@ -76,6 +77,7 @@ class Lobby extends Component {
           </div>
           <div className="col">
             <ol>
+            // Te falto declarar los jugadores en la validación de PropTypes
              { this.props.jugadores.map((p,i) => 
               <li key={i} href="#">{p.name}</li>
             )}
@@ -107,8 +109,12 @@ class Lobby extends Component {
   }
 }
 
+// A continuación, te pongo los PropTypes faltantes
+
 Lobby.propTypes ={
- partidas: PropTypes.array.isRequired
+ partidas: PropTypes.array.isRequired,
+ jugadores: PropTypes.array,
+ player: PropTypes.string
 };
 
 export default withTracker(() =>{
