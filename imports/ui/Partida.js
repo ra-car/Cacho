@@ -28,7 +28,8 @@ class Partida extends Component {
   acualizarApuesta(){
     const cant = document.getElementById("cantidad").value;
     const deno = document.getElementById("denomi").value;
-
+    
+    //Juan David: Te falta poner el nombreP en la validación del PropTypes
     Meteor.call("apuesta.up",this.props.nombreP, cant, deno);
   }
 
@@ -148,9 +149,15 @@ class Partida extends Component {
     );
     }
   }
+  
+
+ 
 
 Partida.propTypes ={
- usuarios: PropTypes.array.isRequired
+ usuarios: PropTypes.array.isRequired,
+  
+//Juan David: A continuación te pongo el PropType que te falto
+ nombreP: PropTypes.string
 };
 
 export default withTracker(() =>{
@@ -159,7 +166,8 @@ export default withTracker(() =>{
   return{
     usuarios: Usuarios.find({}).fetch(),
   };
-
+  
+  // Juan David: Este llamado es Unreachable code. Te puede generar problemas de despliegue. 
   Meteor.subscribe("partidas");
 
 }
