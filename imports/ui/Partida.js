@@ -12,12 +12,25 @@ class Partida extends Component {
 
       partida:{usuarios: [],
       apuesta:"No hay Apuesta"},
-      player:{dados:[]}
+      player:{dados:[]},
+      p1:0,
+      p2:0
      }
 
     this.darUsuario = this.darUsuario.bind(this);
     this.playeradd = this.playeradd.bind(this);
     this.acualizarApuesta = this.acualizarApuesta.bind(this);
+    this.darDadosMesa = this.darDadosMesa.bind(this);
+    this.plantar = this.plantar.bind(this);
+    this.dudar = this.dudar.bind(this);
+  }
+
+  plantar(){
+        alert("Usted pierde un Dado");
+  }
+
+  dudar(){
+        alert("Usted no pierde un Dado");
   }
 
    playeradd()
@@ -30,12 +43,16 @@ class Partida extends Component {
     const deno = document.getElementById("denomi").value;
 
     Meteor.call("apuesta.up",this.props.nombreP, cant, deno);
+
+    let newState = Object.assign({}, this.state.partida);
+    newState.apuesta = cant + "de" + deno;
+    this.setState({partida:newState});
+    this.darDadosMesa();
   }
 
   darPartida(){
 
     Meteor.call("partida.dar", this.props.nombreP , (err,partidad)=>{
-       console.log(partidad);
       if(err){alert(err); return;}
 
       this.setState({
@@ -63,6 +80,56 @@ class Partida extends Component {
       a=p
     });
     return a;
+  }
+
+  darDadosMesa(){
+
+    console.log(this.state.player.dados);
+    var d1= 0;
+    var d2= 0; 
+    var d3= 0; 
+    var d4= 0; 
+    var d5= 0; 
+    var d6= 0;
+    let a=[];
+    let resp=[];
+
+    a = this.state.partida.usuarios;
+    console.log(typeof a);
+    a.forEach(function(element){
+        Meteor.call("dados.dar",element, (err,p)=>{
+          if(err){alert(err); return;}
+
+          for(var key in p){
+          if(p[key]===1){
+            d1=d1+1;
+            console.log("aaaaaaa" + d1)
+          }else if(p[key]===2){
+            d2=d2+1;
+            console.log("aaaaaaa" + d2)
+          }else if(p[key]===3){
+            d3=d3+1;
+            console.log("aaaaaaa" + d3)
+          }else if(p[key]===4){
+            d4=d4+1;
+            console.log("aaaaaaa" + d4)
+          }else if(p[key]===5){
+            d5=d5+1;
+            console.log("aaaaaaa" + d5)
+          }else{
+            d6=d6+1;
+            console.log("aaaaaaa" + d6)
+          }
+        };
+          
+        });   
+        
+    });
+
+    resp.push(d1,d2,d3,d4,d5);
+
+    console.log("la respuesta es " + resp);
+   
   }
 
   render() {
@@ -115,9 +182,9 @@ class Partida extends Component {
                 <div className="row">
                  <div className="col">
                    <br/>
-                   <button class="btn btn-outline-secondary btn-block" type="button">Dudar</button>
+                   <button class="btn btn-outline-secondary btn-block" type="button" onClick={this.dudar}>Dudar</button>
                    <br/>
-                   <button class="btn btn-outline-secondary btn-block" type="button">Plantar</button>
+                   <button class="btn btn-outline-secondary btn-block" type="button" onClick={this.plantar}>Plantar</button>
                  </div>
                  <div className="col">
                     <label >¡Has una apuesta!</label>
@@ -161,6 +228,9 @@ export default withTracker(() =>{
   };
 
   Meteor.subscribe("partidas");
+  return{
+    partidas: Partidas.find({}).fetch()
+  };
 
 }
 )(Partida);

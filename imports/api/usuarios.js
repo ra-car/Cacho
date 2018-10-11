@@ -84,8 +84,21 @@ Meteor.methods(
       const player = Usuarios.findOne({namae});
 
       return player;
+    },
+    "dados.dar"(namae){
+
+      console.log("ël nombre que llega es "+namae)
+     let a= "rafa";
+     let dados= [];
+     const name = Meteor.user().username;
+     const player = Usuarios.findOne({name});
+     dados = player.dados;
+     console.log("los dados en server son " + dados);
+    return Object.values(dados);
     }
 
   }
+
+
 
 );
